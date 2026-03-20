@@ -10,23 +10,27 @@ Utilizamos un modelo de arquitectura centralizado en el ecosistema de Google par
 graph TD
     A[Socio / Usuario] -->|Escaneo de QR / Link WA| B(Google Forms)
     
-    subgraph Capa de Captura y Validación
-    B --> C{Lógica de Secciones}
-    C -->|Validación RegEx| D[Datos Personales]
-    C -->|Input Condicional| E[Ficha Médica]
-    C -->|Aceptación Legal| F[Declaración Jurada]
+    subgraph Captura_y_Validacion
+    B --> C{Logica de Secciones}
+    C -->|Validacion RegEx| D[Datos Personales]
+    C -->|Input Condicional| E[Ficha Medica]
+    C -->|Aceptacion Legal| F[Declaracion Jurada]
     end
 
-    subgraph Capa de Almacenamiento (Estado Actual)
+    subgraph Almacenamiento
     D & E & F --> G[(Google Sheets - Raw Data)]
     end
 
-    subgraph Capa de Salida y Acción
-    G --> H[Gestión Manual / Consultas]
+    subgraph Salida_y_Accion
+    G --> H[Gestion Manual / Consultas]
     B -.->|Redirect| I[WhatsApp Business]
     end
 
-    subgraph Futuras Implementaciones (Roadmap)
+    subgraph Roadmap
     G -.-> J[Looker Studio Dashboard]
     G -.-> K[Google Apps Script Automation]
     end
+
+    style B fill:#4285F4,stroke:#333,stroke-width:2px,color:#fff
+    style G fill:#34A853,stroke:#333,stroke-width:2px,color:#fff
+    style J fill:#FBBC05,stroke:#333,stroke-width:2px,color:#333
